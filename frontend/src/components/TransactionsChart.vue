@@ -33,9 +33,7 @@ ChartJS.register(
 
 export default {
   name: "TransactionsChart",
-  components: {
-    Bar,
-  },
+  components: { Bar },
   props: {
     transactions: {
       type: Array,
@@ -58,9 +56,7 @@ export default {
       chartOptions: {
         responsive: true,
         plugins: {
-          legend: {
-            display: true,
-          },
+          legend: { display: true },
         },
       },
     };
@@ -74,18 +70,17 @@ export default {
     },
   },
   mounted() {
-    this.updateChartData(this.transactions); // 컴포넌트 마운트 시 초기화
+    this.updateChartData(this.transactions);
   },
   methods: {
     updateChartData(transactions) {
       if (Array.isArray(transactions) && transactions.length > 0) {
-        // 날짜와 거래 금액을 배열로 생성
         const dates = transactions.map((t) => t.date);
         const amounts = transactions.map((t) => t.amount);
 
-        // 차트 데이터에 새 거래 추가
-        this.chartData.labels = dates;
-        this.chartData.datasets[0].data = amounts;
+        // 새로운 배열로 할당
+        this.chartData.labels = [...dates];
+        this.chartData.datasets[0].data = [...amounts];
       } else {
         // 데이터가 없는 경우
         this.chartData.labels = [];
