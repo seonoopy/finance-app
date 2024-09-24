@@ -1,30 +1,28 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <div>
-      <Transactions msg="Welcome to Your Vue.js App"/>
-    </div>
+    <TransactionForm @transaction-added="handleTransactionAdded" />
+    <TransactionChart :transactions="transactions" />
   </div>
 </template>
 
 <script>
-import Transactions from './components/Transactions.vue'
+import TransactionForm from "./components/TransactionForm.vue";
+import TransactionChart from "./components/TransactionsChart.vue";
 
 export default {
-  name: 'App',
   components: {
-    Transactions
-  }
-}
+    TransactionForm,
+    TransactionChart,
+  },
+  data() {
+    return {
+      transactions: [],
+    };
+  },
+  methods: {
+    handleTransactionAdded(newTransaction) {
+      this.transactions = [...this.transactions, newTransaction];
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
