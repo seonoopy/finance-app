@@ -2,7 +2,12 @@
   <div>
     <h2>Transactions Overview</h2>
     <div v-if="chartData && chartData.labels.length > 0">
-      <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+      <Bar
+        id="my-chart-id"
+        :key="chartData.labels.length"
+        :options="chartOptions"
+        :data="chartData"
+      />
     </div>
     <div v-else>
       <p>No transactions data available.</p>
@@ -65,6 +70,7 @@ export default {
     transactions: {
       immediate: true,
       handler(newTransactions) {
+        console.log("Transactions updated:", newTransactions);
         this.updateChartData(newTransactions);
       },
     },
