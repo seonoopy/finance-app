@@ -1,19 +1,28 @@
 import axios from 'axios';
 
-const apiClient = axios.create({
-  baseURL: 'http://localhost:8000',
-  withCredentials: false, // CORS 문제를 해결하기 위한 옵션
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+const API_URL = 'http://localhost:8000'; // FastAPI 서버 URL
 
-export default {
-  getTransactions() {
-    return apiClient.get('/transactions/');
-  },
-  createTransaction(transaction) {
-    return apiClient.post('/transactions/', transaction);
-  }
-}
+export const fetchTransactions = async () => {
+  const response = await axios.get(`${API_URL}/transactions/`);
+  return response.data;
+};
+
+export const createTransaction = async (transaction) => {
+  const response = await axios.post(`${API_URL}/transactions/`, transaction);
+  return response.data;
+};
+
+export const login = async (username, password) => {
+  const response = await axios.post(`${API_URL}/token`, new URLSearchParams({
+    username,
+    password,
+  }));
+  return response.data;
+};
+
+export const fetchUser = async (token) => {
+  const response = await axios.get(`${API_URL}/users/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};

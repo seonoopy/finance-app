@@ -1,8 +1,20 @@
 <template>
   <div>
     <h2>Add New Transaction</h2>
-    <input type="date" v-model="newTransaction.date" placeholder="Date" />
+    <input
+      type="text"
+      v-model="newTransaction.name"
+      placeholder="Name"
+      required
+    />
     <input type="number" v-model="newTransaction.amount" placeholder="Amount" />
+    <input
+      type="text"
+      v-model="newTransaction.category"
+      placeholder="Category"
+      require
+    />
+    <input type="date" v-model="newTransaction.date" placeholder="Date" />
     <button @click="addTransaction">Add Transaction</button>
   </div>
 </template>

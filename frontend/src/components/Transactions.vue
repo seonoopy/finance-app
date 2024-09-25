@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import api from "../services/api";
+import api from "../services/api.js";
 import TransactionsChart from "./TransactionsChart.vue";
 
 export default {
