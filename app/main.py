@@ -9,7 +9,7 @@ from passlib.context import CryptContext
 from typing import Optional
 
 # 비밀 키, 알고리즘, 만료 시간 설정
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
+SECRET_KEY = "f33dde7bee16a2a741b4cb125d62f7547d4723a06f8a031eab0130e854d2dc41"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
